@@ -17,11 +17,10 @@ Name: "{group}\GoogleSuiteOpener"; Filename: "{app}\googlesuiteopener.exe"
 
 [Registry]
 ; Context menu entry (installed only if user selects addcontext)
-Root: HKCR; Subkey: "*\shell\GoogleSuiteOpener"; ValueType: string; ValueData: "GoogleSuiteOpener"; Flags: uninsdeletekey; Check: AddContext
-Root: HKCR; Subkey: "*\shell\GoogleSuiteOpener\command"; ValueType: string; ValueData: """{app}\googlesuiteopener.exe"" ""%1"""; Flags: uninsdeletevalue; Check: AddContext
+Root: HKCU; Subkey: "Software\Classes\*\shell\GoogleSuiteOpener"; ValueType: string; ValueData: "Open with GoogleSuiteOpener"; Flags: uninsdeletekey; Check: AddContext
+Root: HKCU; Subkey: "Software\Classes\*\shell\GoogleSuiteOpener\command"; ValueType: string; ValueData: """{app}\googlesuiteopener.exe"" ""%1"""; Flags: uninsdeletevalue; Check: AddContext
 
 ; PATH update (installed only if user selects addpath)
-; NOTE: do NOT use uninsdeletevalue here or you'll erase the entire PATH on uninstall.
 Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{app};{olddata}"; Flags: preservestringtype; Check: AddPath
 
 [Tasks]
